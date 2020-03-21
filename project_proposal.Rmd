@@ -1,0 +1,40 @@
+---
+title: "Data608 - Final Project Proposal"
+author: "William Outcault"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    highlight: pygments
+    theme: cerulean
+    toc: yes
+    toc_float:
+      collapsed: yes
+---
+
+Currently with my employer we are required to deliver monthly reports summarizing payroll, expenses and deposits. I would like to create an R ShinyApp that summarizes this information from the past 10 years. The report will be interactive, allowing the user to customize the timeframe, source of deposits, and breakdown of expenses. 
+
+In addition to the visualizations from previous data, I would like to project the following months data based on current trends and time of year. The final step which would be very beneficial, would be to setup an API between the data source and this application.
+
+The purpose of this RShiny App will be to allow for the viewer (my manager) to get an intuitive overview of the company's trend. We do not currently have a system to capture data visualization from customized datas. With our current process, multiple reports are ran, and individually updated an an excel spreadsheet which is reported to the owner on a monthly basis. This app should allow the viewers to grasp the company's trends in real time.
+
+# Required Libraries
+
+```{r message=FALSE}
+require(dplyr)
+require(tidyr)
+require(stringr)
+require(plotly)
+require(shiny)
+```
+
+# Quickbooks Desktop Raw Data.
+
+```{r}
+private_contractors <- read.csv('https://raw.githubusercontent.com/willoutcault/SFMC/master/1099.csv', TRUE)
+sales <- read.csv('https://raw.githubusercontent.com/willoutcault/SFMC/master/allsales.csv', TRUE)
+expenses <- read.csv('https://raw.githubusercontent.com/willoutcault/SFMC/master/expenses.csv', TRUE)
+payroll <- read.csv('https://raw.githubusercontent.com/willoutcault/SFMC/master/payroll.csv', TRUE)
+
+```
